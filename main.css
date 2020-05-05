@@ -16,6 +16,7 @@
 }
 
 .enterNumberForm {
+    width: 215px;
     display: flex;
     justify-content: space-between;
 }
