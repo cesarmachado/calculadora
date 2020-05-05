@@ -44,8 +44,8 @@ window.addEventListener('load', (event) => {
     }
 
     dividirCalc.addEventListener('click', () => {
-        let addValorDivdir = dividir(addVarParam())
-        return addValorDivdir
+        let addValorDivdir = dividir(addVarParam(param1))
+        console.log(addValorDivdir)
     })
 
     multiplicarCalc.addEventListener('click', () => {
