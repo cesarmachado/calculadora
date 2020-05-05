@@ -38,7 +38,7 @@ window.addEventListener('load', (event) => {
 
     var param1 = 0
 
-    function addVarParam() {
+    function addVarParam(param1) {
         param1 = param1 + document.getElementById('enterNumber1').value
         console.log()
     }
