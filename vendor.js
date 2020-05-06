@@ -36,13 +36,16 @@ window.addEventListener('load', (event) => {
     const num8 = document.getElementById('ocho')
     const num9 = document.getElementById('nueve')
 
+    var param1 = 0
+
+    function addVarParam(param1) {
+        param1 = param1 + document.getElementById('enterNumber1').value
+        console.log()
+    }
+
     dividirCalc.addEventListener('click', () => {
-        let dividirResult = dividir(
-            document.getElementById('enterNumber1').value,
-            document.getElementById('enterNumber2').value,)
-            document.getElementById('resultado').textContent = dividirResult
-            document.getElementById('enterNumber1').value = '';
-            document.getElementById('enterNumber2').value = '';
+        let addValorDivdir = dividir(addVarParam(param1))
+        console.log(addValorDivdir)
     })
 
     multiplicarCalc.addEventListener('click', () => {
