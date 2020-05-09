@@ -1,29 +1,12 @@
-function multiplicar(a, b) {
-    return a * b
-  }
-
-function sumar(a, b) {
-    return Number(a) + Number(b)
-}
-
-function restar(a, b) {
-    return a - b
-}
-
-function dividir(a, b) {
-    return a / b
-}
-
-function porciento(a, b) {
-    return a * b / 100
-}
-
 window.addEventListener('load', (event) => {
+    let operandoUno;
+    let operador;
     const dividirCalc = document.getElementById('dividir')
     const multiplicarCalc = document.getElementById('multiplicar')
     const restarCalc = document.getElementById('restar')    
     const sumarCalc = document.getElementById('sumar')
     const porcCalc = document.getElementById('porciento')
+    const igualCalc = document.getElementById('igual')
     const limpiarCalc = document.getElementById('limpiarTodo')
     const num0 = document.getElementById('cero')
     const num1 = document.getElementById('uno')
@@ -36,59 +19,27 @@ window.addEventListener('load', (event) => {
     const num8 = document.getElementById('ocho')
     const num9 = document.getElementById('nueve')
 
-    var param1 = 0
-
-    function addVarParam(param1) {
-        param1 = param1 + document.getElementById('enterNumber1').value
-        console.log()
-    }
-
-    dividirCalc.addEventListener('click', () => {
-        let addValorDivdir = dividir(addVarParam(param1))
-        console.log(addValorDivdir)
-    })
-
-    multiplicarCalc.addEventListener('click', () => {
-        let multiplicarResult = multiplicar(
-            document.getElementById('enterNumber1').value,
-            document.getElementById('enterNumber2').value,)
-            document.getElementById('resultado').textContent = multiplicarResult
-            document.getElementById('enterNumber1').value = '';
-            document.getElementById('enterNumber2').value = '';
-    })
-
-    restarCalc.addEventListener('click', () => {
-        let restarResult = restar(
-            document.getElementById('enterNumber1').value,
-            document.getElementById('enterNumber2').value,)
-            document.getElementById('resultado').textContent = restarResult
-            document.getElementById('enterNumber1').value = '';
-            document.getElementById('enterNumber2').value = '';
-    })
-
-    sumarCalc.addEventListener('click', () => {
-        let sumarResult = sumar(
-            document.getElementById('enterNumber1').value,
-            document.getElementById('enterNumber2').value,)
-            document.getElementById('resultado').textContent = sumarResult
-            document.getElementById('enterNumber1').value = '';
-            document.getElementById('enterNumber2').value = '';
-    })
-
-    porcCalc.addEventListener('click', () => {
-        let porcResult = porciento(
-            document.getElementById('enterNumber1').value,
-            document.getElementById('enterNumber2').value,)
-            document.getElementById('resultado').textContent = porcResult + '%'
-            document.getElementById('enterNumber1').value = '';
-            document.getElementById('enterNumber2').value = '';
-    })
-
-    limpiarCalc.addEventListener('click', () => {
-        document.getElementById('enterNumber1').value = '';
-        document.getElementById('enterNumber2').value = '';
-        document.getElementById('resultado').textContent = '0';
-    })
+    let math = {
+        multiplicar(a, b) {
+            return a * b
+        },
+    
+        sumar(a, b) {
+            return Number(a) + Number(b)    
+        },
+    
+        restar(a, b) {
+            return a - b
+        },
+    
+        dividir(a, b) {
+            return a / b
+        },
+    
+        porciento(a, b) {
+            return a * b / 100  
+        }
+    }    
 
      num0.addEventListener('click', () => {
         document.getElementById('enterNumber1').value += 0
@@ -128,5 +79,51 @@ window.addEventListener('load', (event) => {
 
      num9.addEventListener('click', () => {
         document.getElementById('enterNumber1').value += 9
+    })
+
+    dividirCalc.addEventListener('click', () => {
+        operandoUno = document.getElementById('enterNumber1').value
+        operador = 'dividir'
+        document.getElementById('enterNumber1').value = ''
+        console.log(operandoUno)
+    })
+
+    multiplicarCalc.addEventListener('click', () => {
+        operandoUno = document.getElementById('enterNumber1').value
+        operador = 'multiplicar'
+        document.getElementById('enterNumber1').value = ''
+        console.log(operandoUno)
+    })
+
+    restarCalc.addEventListener('click', () => {
+        operandoUno = document.getElementById('enterNumber1').value
+        operador = 'restar'
+        document.getElementById('enterNumber1').value = ''
+        console.log(operandoUno)
+    })
+
+    sumarCalc.addEventListener('click', () => {
+        operandoUno = document.getElementById('enterNumber1').value
+        operador = 'sumar'
+        document.getElementById('enterNumber1').value = ''
+        console.log(operandoUno)
+    })
+
+    porcCalc.addEventListener('click', () => {
+        operandoUno = document.getElementById('enterNumber1').value
+        operador = 'porciento'
+        document.getElementById('enterNumber1').value = ''
+        console.log(operandoUno)
+    })
+
+    igualCalc.addEventListener('click', () => {
+        let operadorDos = document.getElementById('enterNumber1').value
+        let igualResult = math[operador](operandoUno, operadorDos)
+        return document.getElementById('resultado').textContent = igualResult
+    })
+
+    limpiarCalc.addEventListener('click', () => {
+        document.getElementById('EnterNumber1').value = ''
+        document.getElementById('resultado').textContent = '0'
     })
 })
