@@ -10,9 +10,9 @@
     
     <div class="calculadora">
 
-        <form name="miformulario">
+        <div>
             <input type="text" name="enterNumber" id="enterNumber" class="enterNumber" onkeyUp="return ValNumero(this);" autofocus>
-        </form>
+        <div>
 
         <div class="numbers">
             <button class="btn btn-dark" id="limpiarCalc">AC</button>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="numbers">
-            <button class="btn btn-gris" id="siete" value="7">7</button>
+            <button class="btn btn-gris" id="siete">7</button>
             <button class="btn btn-gris" id="ocho">8</button>
             <button class="btn btn-gris" id="nueve">9</button>
             <button class="btn btn-orange" id="multiplicar">x</button>
@@ -48,24 +48,8 @@
             <button class="btn btn-orange" id="igual">=</button>
         </div>
 
-    </div>
-
-    <script>
-        //Solo permite introducir numeros.
-    function valideKey(evt) {
-        var code = evt.which ? evt.which : evt.keyCode;
-        if (code == 8) {
-            //backspace
-            return true;
-        } else if (code >= 48 && code <= 57) {
-            //is a number
-            return true;
-        } else {
-            return false;
-        }
-    }
-    </script>
-
-    <script src="calculadora.js"></script>    
+  </div>
+          
+  <script src="calculadora.js"></script>    
 </body>
 </html>

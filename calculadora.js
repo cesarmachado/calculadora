@@ -15,6 +15,8 @@ window.addEventListener('load', (event) => {
     const num7 = document.getElementById('siete')
     const num8 = document.getElementById('ocho')
     const num9 = document.getElementById('nueve')
+    const numNeg = document.getElementById('negativo')
+    const numDec = document.getElementById('decimal')
     const sumaCalc = document.getElementById('sumar')
     const restCalc = document.getElementById('restar')
     const multiCalc = document.getElementById('multiplicar')
@@ -66,7 +68,7 @@ window.addEventListener('load', (event) => {
     num9.addEventListener('click', () => {
         document.getElementById('enterNumber').value += 9
     })
-
+  
     numDec.addEventListener('click', () => {
         document.getElementById('enterNumber').value += '.'
     })
@@ -104,7 +106,37 @@ window.addEventListener('load', (event) => {
         if ( valUno !== undefined ) {
             
         }
-        
+      
+    numNeg.addEventListener('click', () => {
+        if (document.getElementById('enterNumber').value !== undefined) {
+           let negativo = '-' + document.getElementById('enterNumber').value
+           document.getElementById('enterNumber').value = negativo
+        }       else {
+            document.getElementById('enterNumber').value = ''
+        }
+    })
+
+       /*  if (document.getElementById('enterNumber') == negativo) {
+            let positivo = document.getElementById('enterNumber').value 
+        }
+         */
+  
+
+    /* numDec.addEventListener('click', () => {
+        if (document.getElementById('enterNumber').value !== '') {
+            let decimal = document.getElementById('enterNumber').value + '-'
+            console.log(decimal)
+            document.getElementById('enterNumber').value = decimal
+        } else {
+            document.getElementById('enterNumber').value = ''
+        }
+    }) */
+
+    sumaCalc.addEventListener('click', () => {
+        valUno = document.getElementById('enterNumber').value
+        //operador = 'sumar' 
+        //let suCalc = math[operador](valUno, valDos)
+        //return document.getElementById('enterNumber').value = suCalc
     })
 
     pcienCalc.addEventListener('click', () => {
