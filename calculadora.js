@@ -1,4 +1,7 @@
 window.addEventListener('load', (event) => {
+
+    // ------------ VARIABLES --------------- //
+
     let valUno;
     let valDos;
     let operador;
@@ -21,6 +24,10 @@ window.addEventListener('load', (event) => {
     const pcienCalc = document.getElementById('porciento')
     const igualCalc = document.getElementById('igual')
     const limpCalc = document.getElementById('limpiarCalc')
+    let numNeg = document.getElementById('negativo')
+    let numDec = document.getElementById('decimal')
+    
+    // ----------- Adicionnar Numeros ----------- //
 
     num0.addEventListener('click', () => {
         document.getElementById('enterNumber').value += 0
@@ -61,7 +68,45 @@ window.addEventListener('load', (event) => {
     num9.addEventListener('click', () => {
         document.getElementById('enterNumber').value += 9
     })
+  
+    numDec.addEventListener('click', () => {
+        document.getElementById('enterNumber').value += '.'
+    })
 
+   //*** Este Codigo permite Validar que sea un campo Numerico
+   function Solo_Numerico(variable){
+    Numer=parseInt(variable);
+    if (isNaN(Numer)){
+        return "";
+    }
+    return Numer;
+}
+    function ValNumero(Control){
+        Control.value=Solo_Numerico(Control.value);
+    }
+//*** Fin del Codigo para Validar que sea un campo Numerico
+
+    // ------- Numeros Positivos y negativos ------- //
+
+    numNeg.addEventListener('click', () => {
+        let valor = document.getElementById('enterNumber').value
+        if ( valor ) {
+           let negativo = -1 * valor
+           document.getElementById('enterNumber').value = negativo
+        } 
+
+        if ( valor < 0 ) {
+            let positivo = -1 * valor
+             document.getElementById('enterNumber').value = positivo
+        }
+    })
+
+    sumaCalc.addEventListener('click', () => {
+        valUno = document.getElementById('enterNumber').value
+        if ( valUno !== undefined ) {
+            
+        }
+      
     numNeg.addEventListener('click', () => {
         if (document.getElementById('enterNumber').value !== undefined) {
            let negativo = '-' + document.getElementById('enterNumber').value

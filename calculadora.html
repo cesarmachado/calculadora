@@ -11,8 +11,8 @@
     <div class="calculadora">
 
         <div>
-            <input type="number" name="" id="enterNumber" class="enterNumber" autofocus>
-        </div>
+            <input type="text" name="enterNumber" id="enterNumber" class="enterNumber" onkeyUp="return ValNumero(this);" autofocus>
+        <div>
 
         <div class="numbers">
             <button class="btn btn-dark" id="limpiarCalc">AC</button>
@@ -48,8 +48,8 @@
             <button class="btn btn-orange" id="igual">=</button>
         </div>
 
-    </div>
-
-    <script src="calculadora.js"></script>    
+  </div>
+          
+  <script src="calculadora.js"></script>    
 </body>
 </html>
