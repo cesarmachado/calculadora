@@ -5,6 +5,7 @@ window.addEventListener('load', (event) => {
     let valUno;
     let valDos;
     let operador;
+    let enterNumber = document.getElementById('enterNumber')
     const num0 = document.getElementById('cero')
     const num1 = document.getElementById('uno')
     const num2 = document.getElementById('dos')
@@ -15,8 +16,6 @@ window.addEventListener('load', (event) => {
     const num7 = document.getElementById('siete')
     const num8 = document.getElementById('ocho')
     const num9 = document.getElementById('nueve')
-    const numNeg = document.getElementById('negativo')
-    const numDec = document.getElementById('decimal')
     const sumaCalc = document.getElementById('sumar')
     const restCalc = document.getElementById('restar')
     const multiCalc = document.getElementById('multiplicar')
@@ -30,61 +29,67 @@ window.addEventListener('load', (event) => {
     // ----------- Adicionnar Numeros ----------- //
 
     num0.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 0
+        enterNumber.value += 0
+        enterNumber.focus()
     })
 
     num1.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 1
+        enterNumber.value += 1
+        enterNumber.focus()
     })
 
     num2.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 2
+        enterNumber.value += 2
+        enterNumber.focus()
     })
 
     num3.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 3
+        enterNumber.value += 3
+        enterNumber.focus()
     })
 
     num4.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 4
+        enterNumber.value += 4
+        enterNumber.focus()
     } )
 
     num5.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 5
+        enterNumber.value += 5
+        enterNumber.focus()
     })
 
     num6.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 6
+        enterNumber.value += 6
+        enterNumber.focus()
     })
 
     num7.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 7
+        enterNumber.value += 7
+        enterNumber.focus()
     })
 
     num8.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 8
+        enterNumber.value += 8
+        enterNumber.focus()
     })
 
     num9.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += 9
-    })
-  
-    numDec.addEventListener('click', () => {
-        document.getElementById('enterNumber').value += '.'
+        enterNumber.value += 9
+        enterNumber.focus()
     })
 
-   //*** Este Codigo permite Validar que sea un campo Numerico
-   function Solo_Numerico(variable){
-    Numer=parseInt(variable);
-    if (isNaN(Numer)){
-        return "";
-    }
-    return Numer;
-}
-    function ValNumero(Control){
-        Control.value=Solo_Numerico(Control.value);
-    }
-//*** Fin del Codigo para Validar que sea un campo Numerico
+    numDec.addEventListener('click', () => {
+        enterNumber.value += '.'
+        enterNumber.focus()
+    })
+
+    // ----------- VALIDACION DEL INPUT PARA SOLO NUMEROS ----------- //
+    enterNumber.addEventListener('keypress', (e) => {
+        var key = window.event ? e.which : e.keyCode
+        if ( ( key < 48 || key > 57 ) && ( key !== 46 ) ) {
+            e.preventDefault()
+        }
+    })
 
     // ------- Numeros Positivos y negativos ------- //
 
@@ -101,53 +106,23 @@ window.addEventListener('load', (event) => {
         }
     })
 
-    sumaCalc.addEventListener('click', () => {
+/*     sumaCalc.addEventListener('click', () => {
         valUno = document.getElementById('enterNumber').value
         if ( valUno !== undefined ) {
             
         }
-      
-    numNeg.addEventListener('click', () => {
-        if (document.getElementById('enterNumber').value !== undefined) {
-           let negativo = '-' + document.getElementById('enterNumber').value
-           document.getElementById('enterNumber').value = negativo
-        }       else {
-            document.getElementById('enterNumber').value = ''
-        }
-    })
-
-       /*  if (document.getElementById('enterNumber') == negativo) {
-            let positivo = document.getElementById('enterNumber').value 
-        }
-         */
-  
-
-    /* numDec.addEventListener('click', () => {
-        if (document.getElementById('enterNumber').value !== '') {
-            let decimal = document.getElementById('enterNumber').value + '-'
-            console.log(decimal)
-            document.getElementById('enterNumber').value = decimal
-        } else {
-            document.getElementById('enterNumber').value = ''
-        }
+        
     }) */
 
-    sumaCalc.addEventListener('click', () => {
-        valUno = document.getElementById('enterNumber').value
-        //operador = 'sumar' 
-        //let suCalc = math[operador](valUno, valDos)
-        //return document.getElementById('enterNumber').value = suCalc
-    })
-
-    pcienCalc.addEventListener('click', () => {
+/*     pcienCalc.addEventListener('click', () => {
         let val = document.getElementById('enterNumber').value
         operador = 'porciento'
         let pCiento = math[operador](val)
         return document.getElementById('enterNumber').value = pCiento
-    })
+    }) */
 
     limpCalc.addEventListener('click', () => {
-        document.getElementById('enterNumber').value = ''
+        enterNumber.value = ''
     })
 
     let math = {
@@ -164,12 +139,22 @@ window.addEventListener('load', (event) => {
         },
 
         restar(val1, val2) {
-            return val1 - val2
+            return val1 - val2 
         },
 
         porciento(val) {
             return val / 100
         }
     }
+
+    // ----------- FUNCIONES -------------- //
+
+    // Solo permite introducir numeros en el enterNumber.
+    /* function soloNumeros(e){
+        var key = window.event ? e.which : e.keyCode
+        if ( ( key < 48 || key > 57 ) && ( key !== 46 ) ) {
+            e.preventDefault()
+        }
+    } */
 
 })
