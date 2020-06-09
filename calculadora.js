@@ -6,6 +6,8 @@ window.addEventListener('load', (event) => {
     let igualResult;
     var ultimaEntrada;
     let enterNumber = document.getElementById('enterNumber');
+    const DIGITO = 'digito'
+    const OPERADOR = 'operador'
     const num0 = document.getElementById('cero');
     const num1 = document.getElementById('uno');
     const num2 = document.getElementById('dos');
@@ -28,63 +30,76 @@ window.addEventListener('load', (event) => {
 
     // ----------- ADICIONAR NUMEROS ----------- //
     num0.addEventListener('click', () => {
+      if (ultimaEntrada == OPERADOR) {
+        enterNumber.value = '';
+      }
         enterNumber.value += 0
         enterNumber.focus()
-        ultimaEntrada = '0'
+        // enterNumber.value += 0
+        // enterNumber.focus()
+        // ultimaEntrada = DIGITO
     })
 
     num1.addEventListener('click', () => {
+      if (ultimaEntrada == OPERADOR) {
+        enterNumber.value = '';
+      }
+
+      if (ultimaEntrada = DIGITO) {
         enterNumber.value += 1
         enterNumber.focus()
-        ultimaEntrada = '1' 
+      }
+        // enterNumber.value += 1
+        // enterNumber.focus()
+        // ultimaEntrada = DIGITO
     })
 
     num2.addEventListener('click', () => {
         enterNumber.value += 2
         enterNumber.focus()
-        ultimaEntrada = '2'
+        ultimaEntrada = DIGITO
     })
 
     num3.addEventListener('click', () => {
         enterNumber.value += 3
         enterNumber.focus()
-        ultimaEntrada = '3'
+        ultimaEntrada = DIGITO
     })
 
     num4.addEventListener('click', () => {
         enterNumber.value += 4
         enterNumber.focus()
-        ultimaEntrada = '4'
+        ultimaEntrada = DIGITO
     })
 
     num5.addEventListener('click', () => {
         enterNumber.value += 5
         enterNumber.focus()
-        ultimaEntrada = '5'
+        ultimaEntrada = DIGITO
     })
 
     num6.addEventListener('click', () => {
         enterNumber.value += 6
         enterNumber.focus()
-        ultimaEntrada = '6'
+        ultimaEntrada = DIGITO
     })
 
     num7.addEventListener('click', () => {
         enterNumber.value += 7
         enterNumber.focus()
-        ultimaEntrada = '7'
+        ultimaEntrada = DIGITO
     })
 
     num8.addEventListener('click', () => {
         enterNumber.value += 8
         enterNumber.focus()
-        ultimaEntrada = '8'
+        ultimaEntrada = DIGITO
     })
 
     num9.addEventListener('click', () => {
         enterNumber.value += 9
         enterNumber.focus()
-        ultimaEntrada = '9'
+        ultimaEntrada = DIGITO
     })
 
     /* numDec.addEventListener('click', () => {
@@ -119,7 +134,7 @@ window.addEventListener('load', (event) => {
         if (enterNumber.value !== '' && !operador) {
             operandoUno = enterNumber.value
             operador = 'dividir'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             enterNumber.value = ''
             console.log(operandoUno)
             console.log(ultimaEntrada)
@@ -131,8 +146,8 @@ window.addEventListener('load', (event) => {
             igualResult = math[operador](Number(operandoUno), Number(operandoDos))
             enterNumber.value = igualResult
             operador = 'dividir'
-            ultimaEntrada = operador
-            operandoUno = igualResult
+            ultimaEntrada = OPERADOR
+            operandoUno = ''
             console.log(operador)
             console.log(igualResult)
         }
@@ -159,7 +174,7 @@ window.addEventListener('load', (event) => {
             igualResult = math[operador](Number(operandoUno), Number(operandoDos))
             enterNumber.value = igualResult
             operador = 'multiplicar'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             operandoUno = igualResult
             console.log(operador)
             console.log(igualResult)
@@ -175,7 +190,7 @@ window.addEventListener('load', (event) => {
         if (enterNumber.value !== '' && !operador) {
             operandoUno = enterNumber.value
             operador = 'restar'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             enterNumber.value = ''
             console.log(operandoUno)
             console.log(operador)
@@ -187,7 +202,7 @@ window.addEventListener('load', (event) => {
             igualResult = math[operador](Number(operandoUno), Number(operandoDos))
             enterNumber.value = igualResult
             operador = 'restar'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             operandoUno = igualResult
             console.log(operador)
             console.log(igualResult)
@@ -203,7 +218,7 @@ window.addEventListener('load', (event) => {
         if (enterNumber.value !== '' && !operador) {
             operandoUno = enterNumber.value
             operador = 'sumar'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             enterNumber.value = ''
             console.log(operandoUno)
             console.log(operador)
@@ -215,7 +230,7 @@ window.addEventListener('load', (event) => {
             igualResult = math[operador](Number(operandoUno), Number(operandoDos))
             enterNumber.value = igualResult
             operador = 'sumar'
-            ultimaEntrada = operador
+            ultimaEntrada = OPERADOR
             operandoUno = igualResult
             console.log(operador)
             console.log(igualResult)
@@ -225,7 +240,7 @@ window.addEventListener('load', (event) => {
     pcienCalc.addEventListener('click', () => {
         let val = enterNumber.value
         operador = 'porciento'
-        ultimaEntrada = operador
+        ultimaEntrada = OPERADOR
         let pCiento = math[operador](val)
         enterNumber.value = pCiento
     })
@@ -274,8 +289,7 @@ window.addEventListener('load', (event) => {
         if ((key < 48 || key > 57) && (key !== 46)) {
             e.preventDefault()
         }
-    }
-
+      }
 });
 
 // 1 - escribir la tarea, condiciones, casos de uso y accion a ejecutar en cada caso de uso
@@ -283,5 +297,3 @@ window.addEventListener('load', (event) => {
        // 3 traducir a js
 
     // 1. comprobar si el ultimo valor fue un digito u operador
-        
-       
