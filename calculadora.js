@@ -8,6 +8,7 @@ window.addEventListener('load', (event) => {
   let enterNumber = document.getElementById('enterNumber');
   const DIGITO = 'digito'
   const OPERADOR = 'operador'
+  const RESULTADOFINAL = 'resultadofinal'
   const num0 = document.getElementById('cero');
   const num1 = document.getElementById('uno');
   const num2 = document.getElementById('dos');
@@ -33,90 +34,120 @@ window.addEventListener('load', (event) => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 0
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 0
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    } 
   })
 
   num1.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 1
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 1
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num2.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 2
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 2
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num3.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 3
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 3
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num4.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 4
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 4
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num5.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 5
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
-  })
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 5
+      enterNumber.focus()
+      ultimaEntrada = DIGITO  
+    }
+})
 
   num6.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 6
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 6
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num7.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 7
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 7
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num8.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 8
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 8
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   num9.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
-    enterNumber.value += 9
-    enterNumber.focus()
-    ultimaEntrada = DIGITO
+
+    if (ultimaEntrada !== RESULTADOFINAL) {
+      enterNumber.value += 9
+      enterNumber.focus()
+      ultimaEntrada = DIGITO
+    }
   })
 
   /* numDec.addEventListener('click', () => {
@@ -227,9 +258,10 @@ window.addEventListener('load', (event) => {
 
   igualCalc.addEventListener('click', () => {
     let operandoDos = enterNumber.value
-    let igualResult = math[operador](operandoUno, operandoDos)
+    let igualResult = math[operador](Number(operandoUno), Number(operandoDos))
     operandoUno = ''
     enterNumber.value = igualResult
+    ultimaEntrada = RESULTADOFINAL
   })
 
   limpCalc.addEventListener('click', () => {
@@ -237,6 +269,7 @@ window.addEventListener('load', (event) => {
     enterNumber.value = ''
     operandoUno = ''
     operador = ''
+    ultimaEntrada = ''
   })
 
   let math = {
