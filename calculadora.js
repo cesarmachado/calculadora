@@ -8,7 +8,7 @@ window.addEventListener('load', (event) => {
   let enterNumber = document.getElementById('enterNumber');
   const DIGITO = 'digito'
   const OPERADOR = 'operador'
-  const RESULTADOFINAL = 'resultadofinal'
+  const ULTIMAENTRADA = 'ultimaentrada'
   const num0 = document.getElementById('cero');
   const num1 = document.getElementById('uno');
   const num2 = document.getElementById('dos');
@@ -35,11 +35,11 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 0
       enterNumber.focus()
       ultimaEntrada = DIGITO
-    } 
+    }
   })
 
   num1.addEventListener('click', () => {
@@ -47,7 +47,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 1
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -59,7 +59,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 2
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -71,7 +71,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 3
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -83,7 +83,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 4
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -95,19 +95,19 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 5
       enterNumber.focus()
-      ultimaEntrada = DIGITO  
+      ultimaEntrada = DIGITO
     }
-})
+  })
 
   num6.addEventListener('click', () => {
     if (ultimaEntrada == OPERADOR) {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 6
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -119,7 +119,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 7
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -131,7 +131,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 8
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -143,7 +143,7 @@ window.addEventListener('load', (event) => {
       enterNumber.value = '';
     }
 
-    if (ultimaEntrada !== RESULTADOFINAL) {
+    if (ultimaEntrada !== ULTIMAENTRADA) {
       enterNumber.value += 9
       enterNumber.focus()
       ultimaEntrada = DIGITO
@@ -161,12 +161,23 @@ window.addEventListener('load', (event) => {
   // ------- NUMEROS POSITIVOS Y NEGATIVOS ------- //
   numNeg.addEventListener('click', () => {
     let valor = enterNumber.value
+    let valor2 = igualResult
     if (valor) {
       let negativo = -1 * valor
       enterNumber.value = negativo
     }
 
     if (valor < 0) {
+      let positivo = -1 * valor
+      enterNumber.value = positivo
+    }
+
+    if (valor2) {
+      let negativo = -1 * valor
+      enterNumber.value = negativo
+    }
+
+    if (valor2 < 0) {
       let positivo = -1 * valor
       enterNumber.value = positivo
     }
@@ -250,18 +261,33 @@ window.addEventListener('load', (event) => {
   })
 
   pcienCalc.addEventListener('click', () => {
-    let val = enterNumber.value
-    operador = 'porciento'
-    let pCiento = math[operador](val)
-    enterNumber.value = pCiento
+    if (enterNumber.value !== '' && operandoUno == '') {
+      operandoUno = enterNumber.value
+      operador = 'porciento'
+      let pCiento = math[operador](operandoUno, 1)
+      enterNumber.value = pCiento
+    } else {
+      if (enterNumber.value !== '' && operandoUno !== '' && operador == 'multiplicar') {
+        operandoDos = enterNumber.value
+        operador = 'porciento'
+        let pCiento = math[operador](Number(operandoUno), Number(operandoDos))
+        enterNumber.value = pCiento
+        operandoUno = pCiento
+      }
+    } 
+    ultimaEntrada = OPERADOR
   })
 
   igualCalc.addEventListener('click', () => {
-    let operandoDos = enterNumber.value
-    let igualResult = math[operador](Number(operandoUno), Number(operandoDos))
-    operandoUno = ''
-    enterNumber.value = igualResult
-    ultimaEntrada = RESULTADOFINAL
+    // 'existe valor en el input y valor1 y operador guardado'
+    //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
+    if (enterNumber.value !== '' && operandoUno !== '' && operador) {
+      let operandoDos = enterNumber.value
+      igualResult = math[operador](Number(operandoUno), Number(operandoDos))
+      enterNumber.value = igualResult
+      operador = ''
+    }
+    ultimaEntrada = ULTIMAENTRADA
   })
 
   limpCalc.addEventListener('click', () => {
@@ -289,8 +315,8 @@ window.addEventListener('load', (event) => {
       return val1 - val2
     },
 
-    porciento(val) {
-      return val / 100
+    porciento(val1, val2) {
+      return val1 * val2 / 100
     }
   }
 
@@ -308,9 +334,3 @@ window.addEventListener('load', (event) => {
 // 1 - escribir la tarea, condiciones, casos de uso y accion a ejecutar en cada caso de uso
        // 2 - escribir en pseudo codigo 
        // 3 traducir a js
-
-    // 1. - mantener el valor del input con el mismo valor despues de apretar un operdor matematico y en espera de ser actualizado cuando se escriba valores otra vez
-        // si tengo un valor en la entrada y no tengo operador: guardar el valor y el operador y mantener el valor en la entrada hasta apretar un numero otra vez
-
-        // ya tengo valor guardado y operador y el mismo valor en la pantalla: ver si el ultimo valor fue un operador limpiar la pantalla y escribir nuevo valor
-
