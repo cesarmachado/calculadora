@@ -196,7 +196,7 @@ window.addEventListener('load', (event) => {
         let operandoDos = enterNumber.value
         igualResult = math[operador](Number(operandoUno), Number(operandoDos))
         enterNumber.value = igualResult
-        operador = 'dividir'
+        operador = ''
         operandoUno = igualResult
       }
     }
@@ -208,6 +208,7 @@ window.addEventListener('load', (event) => {
     if (enterNumber.value !== '' && !operador) {
       operandoUno = enterNumber.value
       operador = 'multiplicar'
+      console.log(operador)
     } else {
       // 'existe valor en el input y valor1 y operador guardado'
       //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
@@ -215,7 +216,7 @@ window.addEventListener('load', (event) => {
         let operandoDos = enterNumber.value
         igualResult = math[operador](Number(operandoUno), Number(operandoDos))
         enterNumber.value = igualResult
-        operador = 'multiplicar'
+        operador = ''
         operandoUno = igualResult
       }
     }
@@ -234,7 +235,7 @@ window.addEventListener('load', (event) => {
         let operandoDos = enterNumber.value
         igualResult = math[operador](Number(operandoUno), Number(operandoDos))
         enterNumber.value = igualResult
-        operador = 'restar'
+        operador = ''
         operandoUno = igualResult
       }
     }
@@ -253,7 +254,7 @@ window.addEventListener('load', (event) => {
         let operandoDos = enterNumber.value
         igualResult = math[operador](Number(operandoUno), Number(operandoDos))
         enterNumber.value = igualResult
-        operador = 'sumar'
+        operador = ''
         operandoUno = igualResult
       }
     }
