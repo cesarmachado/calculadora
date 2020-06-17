@@ -1,3 +1,25 @@
+const math = {
+  multiplicar(val1, val2) {
+    return val1 * val2
+  },
+
+  dividir(val1, val2) {
+    return val1 / val2
+  },
+
+  sumar(val1, val2) {
+    return val1 + val2
+  },
+
+  restar(val1, val2) {
+    return val1 - val2
+  },
+
+  porciento(val1, val2) {
+    return val1 * val2 / 100
+  }
+}
+
 window.addEventListener('load', (event) => {
 
   // ------------ VARIABLES --------------- //
@@ -9,16 +31,8 @@ window.addEventListener('load', (event) => {
   const DIGITO = 'digito'
   const OPERADOR = 'operador'
   const ULTIMAENTRADA = 'ultimaentrada'
-  const num0 = document.getElementById('cero');
-  const num1 = document.getElementById('uno');
-  const num2 = document.getElementById('dos');
-  const num3 = document.getElementById('tres');
-  const num4 = document.getElementById('cuatro');
-  const num5 = document.getElementById('cinco');
-  const num6 = document.getElementById('seis');
-  const num7 = document.getElementById('siete');
-  const num8 = document.getElementById('ocho');
-  const num9 = document.getElementById('nueve');
+  var btnDigitos = document.querySelectorAll('.digito');
+  var btnOPeradores = document.querySelectorAll('.operador');
   const sumaCalc = document.getElementById('sumar');
   const restCalc = document.getElementById('restar');
   const multiCalc = document.getElementById('multiplicar');
@@ -30,125 +44,22 @@ window.addEventListener('load', (event) => {
   let numDec = document.getElementById('decimal');
 
   // ----------- ADICIONAR NUMEROS ----------- //
-  num0.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
+  
+  const agregarListener = (btnDigito) => {
+    btnDigito.addEventListener('click', () => {
+      if (ultimaEntrada == OPERADOR) {
+        enterNumber.value = '';
+      }
+  
+      if (ultimaEntrada !== ULTIMAENTRADA) {
+        enterNumber.value += btnDigito.value
+        enterNumber.focus()
+        ultimaEntrada = DIGITO
+      }
+    })
+  }
 
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 0
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num1.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 1
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num2.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 2
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num3.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 3
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num4.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 4
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num5.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 5
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num6.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 6
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num7.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 7
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num8.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 8
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
-
-  num9.addEventListener('click', () => {
-    if (ultimaEntrada == OPERADOR) {
-      enterNumber.value = '';
-    }
-
-    if (ultimaEntrada !== ULTIMAENTRADA) {
-      enterNumber.value += 9
-      enterNumber.focus()
-      ultimaEntrada = DIGITO
-    }
-  })
+  btnDigitos.forEach(agregarListener)
 
   /* numDec.addEventListener('click', () => {
       enterNumber.value += '.'
@@ -184,11 +95,38 @@ window.addEventListener('load', (event) => {
     enterNumber.focus()
   })
 
-  diviCalc.addEventListener('click', () => {
+ // ----------- OPERADORES ----------- //
+
+  let agregarEventListenerOperator = (btnOPerador) => {
+    btnOPerador.addEventListener('click', () => {
+      // existe valor en el input y no tengo operador guardado
+      if (enterNumber.value !== '' && !operador) {
+        operandoUno = enterNumber.value
+        operador = btnOPerador.value
+        console.log(operador)
+      } else {
+        // 'existe valor en el input y valor1 y operador guardado'
+        //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
+        if (enterNumber.value !== '' && operandoUno !== '' && operador) {
+          let operandoDos = enterNumber.value
+          igualResult = math[operador](Number(operandoUno), Number(operandoDos))
+          enterNumber.value = igualResult
+          operador = ''
+          operandoUno = igualResult
+        }
+      }
+      ultimaEntrada = OPERADOR
+    })
+  }
+
+  btnOPeradores.forEach(agregarEventListenerOperator)
+
+  /* diviCalc.addEventListener('click', () => {
     // existe valor en el input y no tengo operador guardado
     if (enterNumber.value !== '' && !operador) {
       operandoUno = enterNumber.value
       operador = 'dividir'
+      console.log(operador)
     } else {
       // 'existe valor en el input y valor1 y operador guardado'
       //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
@@ -228,6 +166,7 @@ window.addEventListener('load', (event) => {
     if (enterNumber.value !== '' && !operador) {
       operandoUno = enterNumber.value
       operador = 'restar'
+      console.log(operador)
     } else {
       // 'existe valor en el input y valor1 y operador guardado'
       //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
@@ -247,6 +186,7 @@ window.addEventListener('load', (event) => {
     if (enterNumber.value !== '' && !operador) {
       operandoUno = enterNumber.value
       operador = 'sumar'
+      console.log(operador)
     } else {
       // 'existe valor en el input y valor1 y operador guardado'
       //'significa que debo ejecutar operacion guardada usando el valor de la pantalla como valor2'
@@ -259,7 +199,7 @@ window.addEventListener('load', (event) => {
       }
     }
     ultimaEntrada = OPERADOR
-  })
+  }) */
 
   pcienCalc.addEventListener('click', () => {
     if (enterNumber.value !== '' && operandoUno == '') {
@@ -298,28 +238,6 @@ window.addEventListener('load', (event) => {
     operador = ''
     ultimaEntrada = ''
   })
-
-  let math = {
-    multiplicar(val1, val2) {
-      return val1 * val2
-    },
-
-    dividir(val1, val2) {
-      return val1 / val2
-    },
-
-    sumar(val1, val2) {
-      return val1 + val2
-    },
-
-    restar(val1, val2) {
-      return val1 - val2
-    },
-
-    porciento(val1, val2) {
-      return val1 * val2 / 100
-    }
-  }
 
   // ----------- FUNCIONES -------------- //
 

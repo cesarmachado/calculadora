@@ -1,0 +1,10 @@
+{
+  "name": "calculadoraMac",
+  "version": "1.0.0",
+  "description": "Una Calculadora hecha a partir de la de Mac",
+  "main": "calculadora.html",
+  "repository": "https://github.com/cesarmachado/calculadoraMac.git",
+  "author": "Cesar A. <cesarmachado8707@gmail.com>",
+  "license": "GPL-3",
+  "private": false
+}
