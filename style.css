@@ -104,7 +104,7 @@ body.dark {
 }
 
 .checkbox:checked + label .ball {
-  transform: translateX(32px);
+  transform: translateX(33px);
 }
 
 .dark-theme-toggle {
@@ -133,4 +133,10 @@ body.dark {
 
 .moon {
   color: #f39c12;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #292C35;
+  }
 }
